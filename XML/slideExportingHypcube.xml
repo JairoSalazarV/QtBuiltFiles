@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Variables>
+	<spectralResolution>50</spectralResolution>
+	<spatialResolution>20</spatialResolution>
+	<spatialOverlap>75</spatialOverlap>
+	<flip>1</flip>
+	<expMinWave>380</expMinWave>
+	<expMaxWave>930</expMaxWave>
+</Variables>

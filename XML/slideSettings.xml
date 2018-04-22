@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Variables>
+	<degreeIni>0</degreeIni>
+	<degreeEnd>25</degreeEnd>
+	<degreeJump>5</degreeJump>
+	<speed>2500</speed>
+</Variables>
