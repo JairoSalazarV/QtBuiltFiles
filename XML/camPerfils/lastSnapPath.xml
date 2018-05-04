@@ -6,10 +6,10 @@
     <ColorBalance>1</ColorBalance>
     <TriggeringTimeSecs>3</TriggeringTimeSecs>
     <ShutterSpeedMs>0</ShutterSpeedMs>
-    <SquareShutterSpeedMs>40000</SquareShutterSpeedMs>
+    <SquareShutterSpeedMs>0</SquareShutterSpeedMs>
     <TimelapseDurationSecs>5</TimelapseDurationSecs>
     <TimelapseInterval_ms>900</TimelapseInterval_ms>
-    <VideoDurationSecs>25</VideoDurationSecs>
+    <VideoDurationSecs>6</VideoDurationSecs>
     <ISO>0</ISO>
     <CameraMp>8</CameraMp>
     <Flipped>0</Flipped>
