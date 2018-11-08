@@ -53,14 +53,14 @@ public:
         pbHorizontal->setGeometry(QRect(770, 20, 41, 28));
         labelHor = new QLabel(formMergeSlideCalibrations);
         labelHor->setObjectName(QStringLiteral("labelHor"));
-        labelHor->setGeometry(QRect(20, 25, 121, 20));
+        labelHor->setGeometry(QRect(14, 25, 121, 20));
         txtHorPath = new QLineEdit(formMergeSlideCalibrations);
         txtHorPath->setObjectName(QStringLiteral("txtHorPath"));
         txtHorPath->setEnabled(false);
         txtHorPath->setGeometry(QRect(140, 20, 631, 28));
         labelHor_2 = new QLabel(formMergeSlideCalibrations);
         labelHor_2->setObjectName(QStringLiteral("labelHor_2"));
-        labelHor_2->setGeometry(QRect(20, 65, 121, 20));
+        labelHor_2->setGeometry(QRect(14, 65, 121, 20));
         txtVertPath = new QLineEdit(formMergeSlideCalibrations);
         txtVertPath->setObjectName(QStringLiteral("txtVertPath"));
         txtVertPath->setEnabled(false);
@@ -76,10 +76,10 @@ public:
         txtCameraID->setGeometry(QRect(140, 225, 161, 28));
         labelHor_3 = new QLabel(formMergeSlideCalibrations);
         labelHor_3->setObjectName(QStringLiteral("labelHor_3"));
-        labelHor_3->setGeometry(QRect(20, 230, 121, 20));
+        labelHor_3->setGeometry(QRect(14, 230, 121, 20));
         labelHor_4 = new QLabel(formMergeSlideCalibrations);
         labelHor_4->setObjectName(QStringLiteral("labelHor_4"));
-        labelHor_4->setGeometry(QRect(20, 185, 121, 20));
+        labelHor_4->setGeometry(QRect(14, 185, 121, 20));
         spinBoxOriginH = new QSpinBox(formMergeSlideCalibrations);
         spinBoxOriginH->setObjectName(QStringLiteral("spinBoxOriginH"));
         spinBoxOriginH->setGeometry(QRect(140, 180, 161, 29));
@@ -87,7 +87,7 @@ public:
         spinBoxOriginH->setMaximum(3000);
         labelHor_5 = new QLabel(formMergeSlideCalibrations);
         labelHor_5->setObjectName(QStringLiteral("labelHor_5"));
-        labelHor_5->setGeometry(QRect(20, 105, 121, 20));
+        labelHor_5->setGeometry(QRect(14, 105, 121, 20));
         pbAffineTrans = new QPushButton(formMergeSlideCalibrations);
         pbAffineTrans->setObjectName(QStringLiteral("pbAffineTrans"));
         pbAffineTrans->setGeometry(QRect(770, 100, 41, 28));
@@ -100,7 +100,7 @@ public:
         pbSensitivities->setGeometry(QRect(770, 140, 41, 28));
         labelHor_6 = new QLabel(formMergeSlideCalibrations);
         labelHor_6->setObjectName(QStringLiteral("labelHor_6"));
-        labelHor_6->setGeometry(QRect(20, 145, 121, 20));
+        labelHor_6->setGeometry(QRect(14, 145, 121, 20));
         txtSensitivities = new QLineEdit(formMergeSlideCalibrations);
         txtSensitivities->setObjectName(QStringLiteral("txtSensitivities"));
         txtSensitivities->setEnabled(false);
@@ -132,13 +132,13 @@ public:
     {
         formMergeSlideCalibrations->setWindowTitle(QApplication::translate("formMergeSlideCalibrations", "Merge Calibration", nullptr));
         pbHorizontal->setText(QApplication::translate("formMergeSlideCalibrations", "...", nullptr));
-        labelHor->setText(QApplication::translate("formMergeSlideCalibrations", "Horizontal", nullptr));
-        labelHor_2->setText(QApplication::translate("formMergeSlideCalibrations", "Vertical", nullptr));
+        labelHor->setText(QApplication::translate("formMergeSlideCalibrations", "Horizontal (*)", nullptr));
+        labelHor_2->setText(QApplication::translate("formMergeSlideCalibrations", "Vertical (*)", nullptr));
         pbVertical->setText(QApplication::translate("formMergeSlideCalibrations", "...", nullptr));
         pbMergeCalibration->setText(QApplication::translate("formMergeSlideCalibrations", "Merge Calibration", nullptr));
-        labelHor_3->setText(QApplication::translate("formMergeSlideCalibrations", "Camera ID", nullptr));
-        labelHor_4->setText(QApplication::translate("formMergeSlideCalibrations", "Origin H", nullptr));
-        labelHor_5->setText(QApplication::translate("formMergeSlideCalibrations", "Transformation", nullptr));
+        labelHor_3->setText(QApplication::translate("formMergeSlideCalibrations", "Camera ID (*)", nullptr));
+        labelHor_4->setText(QApplication::translate("formMergeSlideCalibrations", "Origin H (*)", nullptr));
+        labelHor_5->setText(QApplication::translate("formMergeSlideCalibrations", "Transformation (*)", nullptr));
         pbAffineTrans->setText(QApplication::translate("formMergeSlideCalibrations", "...", nullptr));
         pbSensitivities->setText(QApplication::translate("formMergeSlideCalibrations", "...", nullptr));
         labelHor_6->setText(QApplication::translate("formMergeSlideCalibrations", "Sensitivities", nullptr));

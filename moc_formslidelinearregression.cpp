@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_formSlideLinearRegression_t {
-    QByteArrayData data[22];
-    char stringdata0[397];
+    QByteArrayData data[24];
+    char stringdata0[458];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -53,7 +53,9 @@ QT_MOC_LITERAL(17, 296, 29), // "on_pbGenHorRegression_clicked"
 QT_MOC_LITERAL(18, 326, 15), // "funcTableToList"
 QT_MOC_LITERAL(19, 342, 18), // "QList<structLine>*"
 QT_MOC_LITERAL(20, 361, 8), // "lstLines"
-QT_MOC_LITERAL(21, 370, 26) // "on_pbGenAffinTrans_clicked"
+QT_MOC_LITERAL(21, 370, 33), // "funcUpdateVerticalCalibration..."
+QT_MOC_LITERAL(22, 404, 26), // "structVerticalCalibration*"
+QT_MOC_LITERAL(23, 431, 26) // "on_pbGenAffinTrans_clicked"
 
     },
     "formSlideLinearRegression\0"
@@ -66,7 +68,9 @@ QT_MOC_LITERAL(21, 370, 26) // "on_pbGenAffinTrans_clicked"
     "structVerticalCalibrationSettings*\0"
     "vertCalibSettings\0on_pbGenHorRegression_clicked\0"
     "funcTableToList\0QList<structLine>*\0"
-    "lstLines\0on_pbGenAffinTrans_clicked"
+    "lstLines\0funcUpdateVerticalCalibrationFile\0"
+    "structVerticalCalibration*\0"
+    "on_pbGenAffinTrans_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +80,7 @@ static const uint qt_meta_data_formSlideLinearRegression[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,14 +88,15 @@ static const uint qt_meta_data_formSlideLinearRegression[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x08 /* Private */,
-       3,    0,   55,    2, 0x08 /* Private */,
-       4,    0,   56,    2, 0x08 /* Private */,
-       5,    1,   57,    2, 0x08 /* Private */,
-       8,    5,   60,    2, 0x08 /* Private */,
-      17,    0,   71,    2, 0x08 /* Private */,
-      18,    1,   72,    2, 0x08 /* Private */,
-      21,    0,   75,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    1,   62,    2, 0x08 /* Private */,
+       8,    5,   65,    2, 0x08 /* Private */,
+      17,    0,   76,    2, 0x08 /* Private */,
+      18,    1,   77,    2, 0x08 /* Private */,
+      21,    1,   80,    2, 0x08 /* Private */,
+      23,    0,   83,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -101,6 +106,7 @@ static const uint qt_meta_data_formSlideLinearRegression[] = {
     QMetaType::Int, 0x80000000 | 9, 0x80000000 | 11, 0x80000000 | 11, 0x80000000 | 11, 0x80000000 | 15,   10,   12,   13,   14,   16,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 19,   20,
+    QMetaType::Int, 0x80000000 | 22,   16,
     QMetaType::Void,
 
        0        // eod
@@ -121,7 +127,9 @@ void formSlideLinearRegression::qt_static_metacall(QObject *_o, QMetaObject::Cal
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 5: _t->on_pbGenHorRegression_clicked(); break;
         case 6: _t->funcTableToList((*reinterpret_cast< QList<structLine>*(*)>(_a[1]))); break;
-        case 7: _t->on_pbGenAffinTrans_clicked(); break;
+        case 7: { int _r = _t->funcUpdateVerticalCalibrationFile((*reinterpret_cast< structVerticalCalibration*(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
+        case 8: _t->on_pbGenAffinTrans_clicked(); break;
         default: ;
         }
     }
@@ -152,13 +160,13 @@ int formSlideLinearRegression::qt_metacall(QMetaObject::Call _c, int _id, void *
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

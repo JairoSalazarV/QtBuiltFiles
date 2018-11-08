@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../QtHypCam -I. -isystem /usr/local/include/opencv -isystem /usr/local/include/opencv2 -I../../../Qt/5.10.0/gcc_64/include -I../../../Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I../../../Qt/5.10.0/gcc_64/include/QtMultimedia -I../../../Qt/5.10.0/gcc_64/include/QtWidgets -I../../../Qt/5.10.0/gcc_64/include/QtGui -I../../../Qt/5.10.0/gcc_64/include/QtSerialPort -I../../../Qt/5.10.0/gcc_64/include/QtNetwork -I../../../Qt/5.10.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../QtHypCam -I. -I../../../Qt/5.10.0/gcc_64/include -I../../../Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I../../../Qt/5.10.0/gcc_64/include/QtMultimedia -I../../../Qt/5.10.0/gcc_64/include/QtWidgets -I../../../Qt/5.10.0/gcc_64/include/QtGui -I../../../Qt/5.10.0/gcc_64/include/QtSerialPort -I../../../Qt/5.10.0/gcc_64/include/QtNetwork -I../../../Qt/5.10.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/jairo/Qt/5.10.0/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = HypCam1.0.0
-DISTDIR = /home/jairo/Documentos/DESARROLLOS/build-HypCam-Desktop_Qt_5_8_0_GCC_64bit-Release/.tmp/HypCam1.0.0
+DISTDIR = /home/jairo/Documentos/DESARROLLOS/QtForGit/.tmp/HypCam1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-O1 -Wl,-rpath,/home/jairo/Qt/5.10.0/gcc_64/lib -Wl,-rpath-link,/home/jairo/Qt/5.10.0/gcc_64/lib
-LIBS          = $(SUBLIBS) -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_calib3d -L/home/jairo/Qt/5.10.0/gcc_64/lib -lQt5MultimediaWidgets -lpulse-mainloop-glib -lpulse -lglib-2.0 -lQt5Multimedia -lQt5Widgets -lQt5Gui -lQt5SerialPort -lQt5Network -lQt5Core -lGL -lpthread 
+LFLAGS        = -no-pie -Wl,-rpath,'' -Wl,-O1 -Wl,-rpath,/home/jairo/Qt/5.10.0/gcc_64/lib -Wl,-rpath-link,/home/jairo/Qt/5.10.0/gcc_64/lib
+LIBS          = $(SUBLIBS) -L/home/jairo/Qt/5.10.0/gcc_64/lib -lQt5MultimediaWidgets -lpulse-mainloop-glib -lpulse -lglib-2.0 -lQt5Multimedia -lQt5Widgets -lQt5Gui -lQt5SerialPort -lQt5Network -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -82,7 +82,10 @@ SOURCES       = ../QtHypCam/main.cpp \
 		../QtHypCam/custombrezierline.cpp \
 		../QtHypCam/formmergeslidecalibrations.cpp \
 		../QtHypCam/formmerge3grayintoargb.cpp \
-		../QtHypCam/formhypcubebuildsettings.cpp qrc_lstImgs.cpp \
+		../QtHypCam/formhypcubebuildsettings.cpp \
+		../QtHypCam/formhypercubeanalysis.cpp \
+		../QtHypCam/slideHypcube.cpp \
+		../QtHypCam/formslideplotsettings.cpp qrc_lstImgs.cpp \
 		moc_mainwindow.cpp \
 		moc_graphicsview.cpp \
 		moc_selcolor.cpp \
@@ -104,7 +107,10 @@ SOURCES       = ../QtHypCam/main.cpp \
 		moc_formslidelinearregression.cpp \
 		moc_formmergeslidecalibrations.cpp \
 		moc_formmerge3grayintoargb.cpp \
-		moc_formhypcubebuildsettings.cpp
+		moc_formhypcubebuildsettings.cpp \
+		moc_formhypercubeanalysis.cpp \
+		moc_slideHypcube.cpp \
+		moc_formslideplotsettings.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		__common.o \
@@ -138,6 +144,9 @@ OBJECTS       = main.o \
 		formmergeslidecalibrations.o \
 		formmerge3grayintoargb.o \
 		formhypcubebuildsettings.o \
+		formhypercubeanalysis.o \
+		slideHypcube.o \
+		formslideplotsettings.o \
 		qrc_lstImgs.o \
 		moc_mainwindow.o \
 		moc_graphicsview.o \
@@ -160,7 +169,10 @@ OBJECTS       = main.o \
 		moc_formslidelinearregression.o \
 		moc_formmergeslidecalibrations.o \
 		moc_formmerge3grayintoargb.o \
-		moc_formhypcubebuildsettings.o
+		moc_formhypcubebuildsettings.o \
+		moc_formhypercubeanalysis.o \
+		moc_slideHypcube.o \
+		moc_formslideplotsettings.o
 DIST          = ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/common/linux.conf \
@@ -324,7 +336,6 @@ DIST          = ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf \
-		../QtHypCam/.qmake.stash \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -380,7 +391,10 @@ DIST          = ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../QtHypCam/custombrezierline.h \
 		../QtHypCam/formmergeslidecalibrations.h \
 		../QtHypCam/formmerge3grayintoargb.h \
-		../QtHypCam/formhypcubebuildsettings.h ../QtHypCam/main.cpp \
+		../QtHypCam/formhypcubebuildsettings.h \
+		../QtHypCam/formhypercubeanalysis.h \
+		../QtHypCam/slideHypcube.h \
+		../QtHypCam/formslideplotsettings.h ../QtHypCam/main.cpp \
 		../QtHypCam/mainwindow.cpp \
 		../QtHypCam/__common.cpp \
 		../QtHypCam/hypCamAPI.cpp \
@@ -412,7 +426,10 @@ DIST          = ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../QtHypCam/custombrezierline.cpp \
 		../QtHypCam/formmergeslidecalibrations.cpp \
 		../QtHypCam/formmerge3grayintoargb.cpp \
-		../QtHypCam/formhypcubebuildsettings.cpp
+		../QtHypCam/formhypcubebuildsettings.cpp \
+		../QtHypCam/formhypercubeanalysis.cpp \
+		../QtHypCam/slideHypcube.cpp \
+		../QtHypCam/formslideplotsettings.cpp
 QMAKE_TARGET  = HypCam
 DESTDIR       = 
 TARGET        = HypCam
@@ -421,7 +438,7 @@ TARGET        = HypCam
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h ui_formhypercubeanalysis.h ui_formslideplotsettings.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../QtHypCam/HypCam.pro ../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -587,7 +604,6 @@ Makefile: ../QtHypCam/HypCam.pro ../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qma
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -779,7 +795,6 @@ Makefile: ../QtHypCam/HypCam.pro ../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qma
 ../../../Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf:
@@ -823,9 +838,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../QtHypCam/lstImgs.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtHypCam/mainwindow.h ../QtHypCam/__common.h ../QtHypCam/lstStructs.h ../QtHypCam/hypCamAPI.h ../QtHypCam/graphicsview.h ../QtHypCam/customline.h ../QtHypCam/selcolor.h ../QtHypCam/customrect.h ../QtHypCam/gencalibxml.h ../QtHypCam/rotationfrm.h ../QtHypCam/recparamfrm.h ../QtHypCam/generatehypercube.h ../QtHypCam/customQMatrix4x3.h ../QtHypCam/customQMatrix3x3.h ../QtHypCam/customQMatrix4x4.h ../QtHypCam/selwathtocheck.h ../QtHypCam/chosewavetoextract.h ../QtHypCam/slidehypcam.h ../QtHypCam/rasphypcam.h ../QtHypCam/lstpaths.h ../QtHypCam/arduinomotor.h ../QtHypCam/lstcustoms.h ../QtHypCam/formslidesettings.h ../QtHypCam/lstfilenames.h ../QtHypCam/lstraspividstruct.h ../QtHypCam/formsquareaperturesettings.h ../QtHypCam/formndvisettings.h ../QtHypCam/formobtainfolder.h ../QtHypCam/formbuildslidehypecubepreview.h ../QtHypCam/formtimertxt.h ../QtHypCam/showancalchrres.h ../QtHypCam/ui_showancalchrres.h ../QtHypCam/formgenlinearregression.h ../QtHypCam/formslidelinearregression.h ../QtHypCam/custombrezierline.h ../QtHypCam/formmergeslidecalibrations.h ../QtHypCam/formmerge3grayintoargb.h ../QtHypCam/formhypcubebuildsettings.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtHypCam/main.cpp ../QtHypCam/mainwindow.cpp ../QtHypCam/__common.cpp ../QtHypCam/hypCamAPI.cpp ../QtHypCam/graphicsview.cpp ../QtHypCam/customline.cpp ../QtHypCam/selcolor.cpp ../QtHypCam/customrect.cpp ../QtHypCam/gencalibxml.cpp ../QtHypCam/rotationfrm.cpp ../QtHypCam/recparamfrm.cpp ../QtHypCam/generatehypercube.cpp ../QtHypCam/customQMatrix4x3.cpp ../QtHypCam/customQMatrix3x3.cpp ../QtHypCam/customQMatrix4x4.cpp ../QtHypCam/selwathtocheck.cpp ../QtHypCam/chosewavetoextract.cpp ../QtHypCam/slidehypcam.cpp ../QtHypCam/rasphypcam.cpp ../QtHypCam/arduinomotor.cpp ../QtHypCam/formslidesettings.cpp ../QtHypCam/formsquareaperturesettings.cpp ../QtHypCam/formndvisettings.cpp ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formbuildslidehypecubepreview.cpp ../QtHypCam/formtimertxt.cpp ../QtHypCam/showancalchrres.cpp ../QtHypCam/formgenlinearregression.cpp ../QtHypCam/formslidelinearregression.cpp ../QtHypCam/custombrezierline.cpp ../QtHypCam/formmergeslidecalibrations.cpp ../QtHypCam/formmerge3grayintoargb.cpp ../QtHypCam/formhypcubebuildsettings.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QtHypCam/mainwindow.ui ../QtHypCam/selcolor.ui ../QtHypCam/gencalibxml.ui ../QtHypCam/rotationfrm.ui ../QtHypCam/recparamfrm.ui ../QtHypCam/generatehypercube.ui ../QtHypCam/selwathtocheck.ui ../QtHypCam/chosewavetoextract.ui ../QtHypCam/slidehypcam.ui ../QtHypCam/formslidesettings.ui ../QtHypCam/formsquareaperturesettings.ui ../QtHypCam/formndvisettings.ui ../QtHypCam/formobtainfolder.ui ../QtHypCam/formbuildslidehypecubepreview.ui ../QtHypCam/formtimertxt.ui ../QtHypCam/formgenlinearregression.ui ../QtHypCam/formslidelinearregression.ui ../QtHypCam/formmergeslidecalibrations.ui ../QtHypCam/formmerge3grayintoargb.ui ../QtHypCam/formhypcubebuildsettings.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtHypCam/mainwindow.h ../QtHypCam/__common.h ../QtHypCam/lstStructs.h ../QtHypCam/hypCamAPI.h ../QtHypCam/graphicsview.h ../QtHypCam/customline.h ../QtHypCam/selcolor.h ../QtHypCam/customrect.h ../QtHypCam/gencalibxml.h ../QtHypCam/rotationfrm.h ../QtHypCam/recparamfrm.h ../QtHypCam/generatehypercube.h ../QtHypCam/customQMatrix4x3.h ../QtHypCam/customQMatrix3x3.h ../QtHypCam/customQMatrix4x4.h ../QtHypCam/selwathtocheck.h ../QtHypCam/chosewavetoextract.h ../QtHypCam/slidehypcam.h ../QtHypCam/rasphypcam.h ../QtHypCam/lstpaths.h ../QtHypCam/arduinomotor.h ../QtHypCam/lstcustoms.h ../QtHypCam/formslidesettings.h ../QtHypCam/lstfilenames.h ../QtHypCam/lstraspividstruct.h ../QtHypCam/formsquareaperturesettings.h ../QtHypCam/formndvisettings.h ../QtHypCam/formobtainfolder.h ../QtHypCam/formbuildslidehypecubepreview.h ../QtHypCam/formtimertxt.h ../QtHypCam/showancalchrres.h ../QtHypCam/ui_showancalchrres.h ../QtHypCam/formgenlinearregression.h ../QtHypCam/formslidelinearregression.h ../QtHypCam/custombrezierline.h ../QtHypCam/formmergeslidecalibrations.h ../QtHypCam/formmerge3grayintoargb.h ../QtHypCam/formhypcubebuildsettings.h ../QtHypCam/formhypercubeanalysis.h ../QtHypCam/slideHypcube.h ../QtHypCam/formslideplotsettings.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtHypCam/main.cpp ../QtHypCam/mainwindow.cpp ../QtHypCam/__common.cpp ../QtHypCam/hypCamAPI.cpp ../QtHypCam/graphicsview.cpp ../QtHypCam/customline.cpp ../QtHypCam/selcolor.cpp ../QtHypCam/customrect.cpp ../QtHypCam/gencalibxml.cpp ../QtHypCam/rotationfrm.cpp ../QtHypCam/recparamfrm.cpp ../QtHypCam/generatehypercube.cpp ../QtHypCam/customQMatrix4x3.cpp ../QtHypCam/customQMatrix3x3.cpp ../QtHypCam/customQMatrix4x4.cpp ../QtHypCam/selwathtocheck.cpp ../QtHypCam/chosewavetoextract.cpp ../QtHypCam/slidehypcam.cpp ../QtHypCam/rasphypcam.cpp ../QtHypCam/arduinomotor.cpp ../QtHypCam/formslidesettings.cpp ../QtHypCam/formsquareaperturesettings.cpp ../QtHypCam/formndvisettings.cpp ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formbuildslidehypecubepreview.cpp ../QtHypCam/formtimertxt.cpp ../QtHypCam/showancalchrres.cpp ../QtHypCam/formgenlinearregression.cpp ../QtHypCam/formslidelinearregression.cpp ../QtHypCam/custombrezierline.cpp ../QtHypCam/formmergeslidecalibrations.cpp ../QtHypCam/formmerge3grayintoargb.cpp ../QtHypCam/formhypcubebuildsettings.cpp ../QtHypCam/formhypercubeanalysis.cpp ../QtHypCam/slideHypcube.cpp ../QtHypCam/formslideplotsettings.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QtHypCam/mainwindow.ui ../QtHypCam/selcolor.ui ../QtHypCam/gencalibxml.ui ../QtHypCam/rotationfrm.ui ../QtHypCam/recparamfrm.ui ../QtHypCam/generatehypercube.ui ../QtHypCam/selwathtocheck.ui ../QtHypCam/chosewavetoextract.ui ../QtHypCam/slidehypcam.ui ../QtHypCam/formslidesettings.ui ../QtHypCam/formsquareaperturesettings.ui ../QtHypCam/formndvisettings.ui ../QtHypCam/formobtainfolder.ui ../QtHypCam/formbuildslidehypecubepreview.ui ../QtHypCam/formtimertxt.ui ../QtHypCam/formgenlinearregression.ui ../QtHypCam/formslidelinearregression.ui ../QtHypCam/formmergeslidecalibrations.ui ../QtHypCam/formmerge3grayintoargb.ui ../QtHypCam/formhypcubebuildsettings.ui ../QtHypCam/formhypercubeanalysis.ui ../QtHypCam/formslideplotsettings.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1044,6 +1059,7 @@ qrc_lstImgs.cpp: ../QtHypCam/lstImgs.qrc \
 		../QtHypCam/imagenInte/close.png \
 		../QtHypCam/imagenInte/address-book-new.png \
 		../QtHypCam/imagenInte/salir.bmp \
+		../QtHypCam/imagenInte/plotSignature.svg \
 		../QtHypCam/imagenInte/save.png \
 		../QtHypCam/imagenInte/network-folder-2.png \
 		../QtHypCam/imagenInte/wow_bullet.png \
@@ -1128,9 +1144,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h ../../../Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_graphicsview.cpp moc_selcolor.cpp moc_gencalibxml.cpp moc_rotationfrm.cpp moc_recparamfrm.cpp moc_generatehypercube.cpp moc_selwathtocheck.cpp moc_chosewavetoextract.cpp moc_slidehypcam.cpp moc_formslidesettings.cpp moc_formsquareaperturesettings.cpp moc_formndvisettings.cpp moc_formobtainfolder.cpp moc_formbuildslidehypecubepreview.cpp moc_formtimertxt.cpp moc_showancalchrres.cpp moc_formgenlinearregression.cpp moc_formslidelinearregression.cpp moc_formmergeslidecalibrations.cpp moc_formmerge3grayintoargb.cpp moc_formhypcubebuildsettings.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_graphicsview.cpp moc_selcolor.cpp moc_gencalibxml.cpp moc_rotationfrm.cpp moc_recparamfrm.cpp moc_generatehypercube.cpp moc_selwathtocheck.cpp moc_chosewavetoextract.cpp moc_slidehypcam.cpp moc_formslidesettings.cpp moc_formsquareaperturesettings.cpp moc_formndvisettings.cpp moc_formobtainfolder.cpp moc_formbuildslidehypecubepreview.cpp moc_formtimertxt.cpp moc_showancalchrres.cpp moc_formgenlinearregression.cpp moc_formslidelinearregression.cpp moc_formmergeslidecalibrations.cpp moc_formmerge3grayintoargb.cpp moc_formhypcubebuildsettings.cpp moc_formhypercubeanalysis.cpp moc_slideHypcube.cpp moc_formslideplotsettings.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_graphicsview.cpp moc_selcolor.cpp moc_gencalibxml.cpp moc_rotationfrm.cpp moc_recparamfrm.cpp moc_generatehypercube.cpp moc_selwathtocheck.cpp moc_chosewavetoextract.cpp moc_slidehypcam.cpp moc_formslidesettings.cpp moc_formsquareaperturesettings.cpp moc_formndvisettings.cpp moc_formobtainfolder.cpp moc_formbuildslidehypecubepreview.cpp moc_formtimertxt.cpp moc_showancalchrres.cpp moc_formgenlinearregression.cpp moc_formslidelinearregression.cpp moc_formmergeslidecalibrations.cpp moc_formmerge3grayintoargb.cpp moc_formhypcubebuildsettings.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_graphicsview.cpp moc_selcolor.cpp moc_gencalibxml.cpp moc_rotationfrm.cpp moc_recparamfrm.cpp moc_generatehypercube.cpp moc_selwathtocheck.cpp moc_chosewavetoextract.cpp moc_slidehypcam.cpp moc_formslidesettings.cpp moc_formsquareaperturesettings.cpp moc_formndvisettings.cpp moc_formobtainfolder.cpp moc_formbuildslidehypecubepreview.cpp moc_formtimertxt.cpp moc_showancalchrres.cpp moc_formgenlinearregression.cpp moc_formslidelinearregression.cpp moc_formmergeslidecalibrations.cpp moc_formmerge3grayintoargb.cpp moc_formhypcubebuildsettings.cpp moc_formhypercubeanalysis.cpp moc_slideHypcube.cpp moc_formslideplotsettings.cpp
 moc_mainwindow.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1252,6 +1268,11 @@ moc_mainwindow.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -1285,7 +1306,7 @@ moc_mainwindow.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../QtHypCam/mainwindow.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/mainwindow.h -o moc_mainwindow.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/mainwindow.h -o moc_mainwindow.cpp
 
 moc_graphicsview.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
@@ -1401,10 +1422,15 @@ moc_graphicsview.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView 
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/graphicsview.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/graphicsview.h -o moc_graphicsview.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/graphicsview.h -o moc_graphicsview.cpp
 
 moc_selcolor.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -1513,7 +1539,7 @@ moc_selcolor.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/selcolor.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/selcolor.h -o moc_selcolor.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/selcolor.h -o moc_selcolor.cpp
 
 moc_gencalibxml.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -1635,6 +1661,11 @@ moc_gencalibxml.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -1669,7 +1700,7 @@ moc_gencalibxml.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/gencalibxml.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/gencalibxml.h -o moc_gencalibxml.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/gencalibxml.h -o moc_gencalibxml.cpp
 
 moc_rotationfrm.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -1778,7 +1809,7 @@ moc_rotationfrm.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/rotationfrm.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/rotationfrm.h -o moc_rotationfrm.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/rotationfrm.h -o moc_rotationfrm.cpp
 
 moc_recparamfrm.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -1887,7 +1918,7 @@ moc_recparamfrm.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/recparamfrm.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/recparamfrm.h -o moc_recparamfrm.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/recparamfrm.h -o moc_recparamfrm.cpp
 
 moc_generatehypercube.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -1996,7 +2027,7 @@ moc_generatehypercube.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/generatehypercube.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/generatehypercube.h -o moc_generatehypercube.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/generatehypercube.h -o moc_generatehypercube.cpp
 
 moc_selwathtocheck.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2117,13 +2148,18 @@ moc_selwathtocheck.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
 		../QtHypCam/selwathtocheck.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/selwathtocheck.h -o moc_selwathtocheck.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/selwathtocheck.h -o moc_selwathtocheck.cpp
 
 moc_chosewavetoextract.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2245,6 +2281,11 @@ moc_chosewavetoextract.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog 
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -2288,7 +2329,7 @@ moc_chosewavetoextract.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog 
 		../QtHypCam/chosewavetoextract.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/chosewavetoextract.h -o moc_chosewavetoextract.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/chosewavetoextract.h -o moc_chosewavetoextract.cpp
 
 moc_slidehypcam.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -2402,7 +2443,7 @@ moc_slidehypcam.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../QtHypCam/slidehypcam.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/slidehypcam.h -o moc_slidehypcam.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/slidehypcam.h -o moc_slidehypcam.cpp
 
 moc_formslidesettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2511,7 +2552,7 @@ moc_formslidesettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/formslidesettings.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formslidesettings.h -o moc_formslidesettings.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formslidesettings.h -o moc_formslidesettings.cpp
 
 moc_formsquareaperturesettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2620,7 +2661,7 @@ moc_formsquareaperturesettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/
 		../QtHypCam/formsquareaperturesettings.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formsquareaperturesettings.h -o moc_formsquareaperturesettings.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formsquareaperturesettings.h -o moc_formsquareaperturesettings.cpp
 
 moc_formndvisettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2729,7 +2770,7 @@ moc_formndvisettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/formndvisettings.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formndvisettings.h -o moc_formndvisettings.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formndvisettings.h -o moc_formndvisettings.cpp
 
 moc_formobtainfolder.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2838,7 +2879,7 @@ moc_formobtainfolder.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/formobtainfolder.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formobtainfolder.h -o moc_formobtainfolder.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formobtainfolder.h -o moc_formobtainfolder.cpp
 
 moc_formbuildslidehypecubepreview.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -2960,6 +3001,11 @@ moc_formbuildslidehypecubepreview.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidge
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -2985,7 +3031,7 @@ moc_formbuildslidehypecubepreview.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidge
 		../QtHypCam/formbuildslidehypecubepreview.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formbuildslidehypecubepreview.h -o moc_formbuildslidehypecubepreview.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formbuildslidehypecubepreview.h -o moc_formbuildslidehypecubepreview.cpp
 
 moc_formtimertxt.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3107,6 +3153,11 @@ moc_formtimertxt.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -3132,7 +3183,7 @@ moc_formtimertxt.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/formtimertxt.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formtimertxt.h -o moc_formtimertxt.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formtimertxt.h -o moc_formtimertxt.cpp
 
 moc_showancalchrres.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3260,6 +3311,11 @@ moc_showancalchrres.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -3268,7 +3324,7 @@ moc_showancalchrres.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../QtHypCam/showancalchrres.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/showancalchrres.h -o moc_showancalchrres.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/showancalchrres.h -o moc_showancalchrres.cpp
 
 moc_formgenlinearregression.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3377,7 +3433,7 @@ moc_formgenlinearregression.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDi
 		../QtHypCam/formgenlinearregression.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formgenlinearregression.h -o moc_formgenlinearregression.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formgenlinearregression.h -o moc_formgenlinearregression.cpp
 
 moc_formslidelinearregression.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3498,13 +3554,18 @@ moc_formslidelinearregression.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/Q
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
 		../QtHypCam/formslidelinearregression.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formslidelinearregression.h -o moc_formslidelinearregression.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formslidelinearregression.h -o moc_formslidelinearregression.cpp
 
 moc_formmergeslidecalibrations.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3626,6 +3687,11 @@ moc_formmergeslidecalibrations.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -3651,7 +3717,7 @@ moc_formmergeslidecalibrations.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/
 		../QtHypCam/formmergeslidecalibrations.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formmergeslidecalibrations.h -o moc_formmergeslidecalibrations.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formmergeslidecalibrations.h -o moc_formmergeslidecalibrations.cpp
 
 moc_formmerge3grayintoargb.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3760,7 +3826,7 @@ moc_formmerge3grayintoargb.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDia
 		../QtHypCam/formmerge3grayintoargb.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formmerge3grayintoargb.h -o moc_formmerge3grayintoargb.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formmerge3grayintoargb.h -o moc_formmerge3grayintoargb.cpp
 
 moc_formhypcubebuildsettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
@@ -3882,6 +3948,11 @@ moc_formhypcubebuildsettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QD
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -3907,15 +3978,434 @@ moc_formhypcubebuildsettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QD
 		../QtHypCam/formhypcubebuildsettings.h \
 		moc_predefs.h \
 		../../../Qt/5.10.0/gcc_64/bin/moc
-	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formhypcubebuildsettings.h -o moc_formhypcubebuildsettings.cpp
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formhypcubebuildsettings.h -o moc_formhypcubebuildsettings.cpp
+
+moc_formhypercubeanalysis.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../QtHypCam/__common.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../QtHypCam/graphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		../QtHypCam/lstfilenames.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../QtHypCam/customQMatrix3x3.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMatrix2x2 \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QFileInfo \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
+		../QtHypCam/slideHypcube.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		../QtHypCam/formhypercubeanalysis.h \
+		moc_predefs.h \
+		../../../Qt/5.10.0/gcc_64/bin/moc
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formhypercubeanalysis.h -o moc_formhypercubeanalysis.cpp
+
+moc_slideHypcube.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../QtHypCam/graphicsview.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../QtHypCam/slideHypcube.h \
+		moc_predefs.h \
+		../../../Qt/5.10.0/gcc_64/bin/moc
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/slideHypcube.h -o moc_slideHypcube.cpp
+
+moc_formslideplotsettings.cpp: ../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../QtHypCam/graphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		../QtHypCam/formslideplotsettings.h \
+		moc_predefs.h \
+		../../../Qt/5.10.0/gcc_64/bin/moc
+	/home/jairo/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/jairo/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/jairo/Documentos/DESARROLLOS/QtHypCam -I/home/jairo/Qt/5.10.0/gcc_64/include -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimediaWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtMultimedia -I/home/jairo/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/jairo/Qt/5.10.0/gcc_64/include/QtGui -I/home/jairo/Qt/5.10.0/gcc_64/include/QtSerialPort -I/home/jairo/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/jairo/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtHypCam/formslideplotsettings.h -o moc_formslideplotsettings.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h
+compiler_uic_make_all: ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h ui_formhypercubeanalysis.h ui_formslideplotsettings.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h
+	-$(DEL_FILE) ui_mainwindow.h ui_selcolor.h ui_gencalibxml.h ui_rotationfrm.h ui_recparamfrm.h ui_generatehypercube.h ui_selwathtocheck.h ui_chosewavetoextract.h ui_slidehypcam.h ui_formslidesettings.h ui_formsquareaperturesettings.h ui_formndvisettings.h ui_formobtainfolder.h ui_formbuildslidehypecubepreview.h ui_formtimertxt.h ui_formgenlinearregression.h ui_formslidelinearregression.h ui_formmergeslidecalibrations.h ui_formmerge3grayintoargb.h ui_formhypcubebuildsettings.h ui_formhypercubeanalysis.h ui_formslideplotsettings.h
 ui_mainwindow.h: ../QtHypCam/mainwindow.ui \
 		../../../Qt/5.10.0/gcc_64/bin/uic
 	/home/jairo/Qt/5.10.0/gcc_64/bin/uic ../QtHypCam/mainwindow.ui -o ui_mainwindow.h
@@ -3995,6 +4485,14 @@ ui_formmerge3grayintoargb.h: ../QtHypCam/formmerge3grayintoargb.ui \
 ui_formhypcubebuildsettings.h: ../QtHypCam/formhypcubebuildsettings.ui \
 		../../../Qt/5.10.0/gcc_64/bin/uic
 	/home/jairo/Qt/5.10.0/gcc_64/bin/uic ../QtHypCam/formhypcubebuildsettings.ui -o ui_formhypcubebuildsettings.h
+
+ui_formhypercubeanalysis.h: ../QtHypCam/formhypercubeanalysis.ui \
+		../../../Qt/5.10.0/gcc_64/bin/uic
+	/home/jairo/Qt/5.10.0/gcc_64/bin/uic ../QtHypCam/formhypercubeanalysis.ui -o ui_formhypercubeanalysis.h
+
+ui_formslideplotsettings.h: ../QtHypCam/formslideplotsettings.ui \
+		../../../Qt/5.10.0/gcc_64/bin/uic
+	/home/jairo/Qt/5.10.0/gcc_64/bin/uic ../QtHypCam/formslideplotsettings.ui -o ui_formslideplotsettings.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -4128,6 +4626,11 @@ main.o: ../QtHypCam/main.cpp ../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -4289,6 +4792,11 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -4320,83 +4828,15 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QFileInfo \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qfileinfo.h \
 		ui_mainwindow.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QComboBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFrame \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGroupBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgroupbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMenu \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QRadioButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qradiobutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSlider \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTabWidget \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTableWidget \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtableview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTextEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextdocument.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstfilenames.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -4405,6 +4845,8 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
 		../QtHypCam/hypCamAPI.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QFile \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFileDialog \
@@ -4433,6 +4875,9 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsLineItem \
 		../QtHypCam/customrect.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QPoint \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QObject \
 		../QtHypCam/selcolor.h \
@@ -4449,6 +4894,22 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../QtHypCam/rotationfrm.h \
 		../QtHypCam/recparamfrm.h \
 		../QtHypCam/chosewavetoextract.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTableWidget \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtableview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
 		../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QThread \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qthread.h \
@@ -4589,7 +5050,9 @@ mainwindow.o: ../QtHypCam/mainwindow.cpp ../QtHypCam/mainwindow.h \
 		../QtHypCam/formmergeslidecalibrations.h \
 		../QtHypCam/formmerge3grayintoargb.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QTransform \
-		../QtHypCam/formhypcubebuildsettings.h
+		../QtHypCam/formhypcubebuildsettings.h \
+		../QtHypCam/formhypercubeanalysis.h \
+		../QtHypCam/slideHypcube.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtHypCam/mainwindow.cpp
 
 __common.o: ../QtHypCam/__common.cpp ../QtHypCam/__common.h \
@@ -4710,6 +5173,11 @@ __common.o: ../QtHypCam/__common.cpp ../QtHypCam/__common.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -4764,7 +5232,8 @@ __common.o: ../QtHypCam/__common.cpp ../QtHypCam/__common.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTimer \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qtimer.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasictimer.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QIODevice
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QIODevice \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o __common.o ../QtHypCam/__common.cpp
 
 hypCamAPI.o: ../QtHypCam/hypCamAPI.cpp ../QtHypCam/lstStructs.h \
@@ -4884,6 +5353,11 @@ hypCamAPI.o: ../QtHypCam/hypCamAPI.cpp ../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -5027,6 +5501,11 @@ graphicsview.o: ../QtHypCam/graphicsview.cpp ../QtHypCam/graphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -5059,7 +5538,9 @@ graphicsview.o: ../QtHypCam/graphicsview.cpp ../QtHypCam/graphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsLineItem \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDir \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphicsview.o ../QtHypCam/graphicsview.cpp
 
 customline.o: ../QtHypCam/customline.cpp ../QtHypCam/customline.h \
@@ -5182,6 +5663,11 @@ customline.o: ../QtHypCam/customline.cpp ../QtHypCam/customline.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -5527,53 +6013,6 @@ selcolor.o: ../QtHypCam/selcolor.cpp ../QtHypCam/selcolor.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_selcolor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -5581,11 +6020,20 @@ selcolor.o: ../QtHypCam/selcolor.cpp ../QtHypCam/selcolor.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -5594,7 +6042,9 @@ selcolor.o: ../QtHypCam/selcolor.cpp ../QtHypCam/selcolor.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -5732,6 +6182,11 @@ customrect.o: ../QtHypCam/customrect.cpp ../QtHypCam/customrect.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -6092,6 +6547,11 @@ gencalibxml.o: ../QtHypCam/gencalibxml.cpp ../QtHypCam/gencalibxml.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -6124,45 +6584,6 @@ gencalibxml.o: ../QtHypCam/gencalibxml.cpp ../QtHypCam/gencalibxml.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix4x4.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qquaternion.h \
 		ui_gencalibxml.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QToolButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h \
@@ -6174,6 +6595,8 @@ gencalibxml.o: ../QtHypCam/gencalibxml.cpp ../QtHypCam/gencalibxml.h \
 		../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/QSerialPort \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialport.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialportglobal.h \
@@ -6194,6 +6617,7 @@ gencalibxml.o: ../QtHypCam/gencalibxml.cpp ../QtHypCam/gencalibxml.h \
 		../../../Qt/5.10.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QSharedDataPointer \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetaobject.h \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qaudio.h \
@@ -6306,49 +6730,6 @@ rotationfrm.o: ../QtHypCam/rotationfrm.cpp ../QtHypCam/rotationfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_rotationfrm.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -6359,10 +6740,17 @@ rotationfrm.o: ../QtHypCam/rotationfrm.cpp ../QtHypCam/rotationfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -6371,7 +6759,9 @@ rotationfrm.o: ../QtHypCam/rotationfrm.cpp ../QtHypCam/rotationfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -6491,47 +6881,6 @@ recparamfrm.o: ../QtHypCam/recparamfrm.cpp ../QtHypCam/recparamfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_recparamfrm.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -6539,11 +6888,20 @@ recparamfrm.o: ../QtHypCam/recparamfrm.cpp ../QtHypCam/recparamfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -6552,7 +6910,9 @@ recparamfrm.o: ../QtHypCam/recparamfrm.cpp ../QtHypCam/recparamfrm.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -6672,39 +7032,8 @@ generatehypercube.o: ../QtHypCam/generatehypercube.cpp ../QtHypCam/generatehyper
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_generatehypercube.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
 		../QtHypCam/graphicsview.h \
@@ -6714,10 +7043,17 @@ generatehypercube.o: ../QtHypCam/generatehypercube.cpp ../QtHypCam/generatehyper
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h
@@ -6919,6 +7255,11 @@ customQMatrix3x3.o: ../QtHypCam/customQMatrix3x3.cpp ../QtHypCam/__common.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -7072,6 +7413,11 @@ customQMatrix4x4.o: ../QtHypCam/customQMatrix4x4.cpp ../QtHypCam/customQMatrix4x
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -7214,62 +7560,24 @@ selwathtocheck.o: ../QtHypCam/selwathtocheck.cpp ../QtHypCam/selwathtocheck.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
 		ui_selwathtocheck.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstfilenames.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -7284,12 +7592,21 @@ selwathtocheck.o: ../QtHypCam/selwathtocheck.cpp ../QtHypCam/selwathtocheck.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDesktopWidget \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsLineItem \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		../QtHypCam/customline.h \
 		../QtHypCam/customrect.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QPoint \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QObject \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector2D
@@ -7416,6 +7733,11 @@ chosewavetoextract.o: ../QtHypCam/chosewavetoextract.cpp ../QtHypCam/chosewaveto
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -7456,31 +7778,7 @@ chosewavetoextract.o: ../QtHypCam/chosewavetoextract.cpp ../QtHypCam/chosewaveto
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		ui_chosewavetoextract.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget
+		ui_chosewavetoextract.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chosewavetoextract.o ../QtHypCam/chosewavetoextract.cpp
 
 slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
@@ -7594,44 +7892,6 @@ slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialport.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialportglobal.h \
 		ui_slidehypcam.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
@@ -7643,10 +7903,17 @@ slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -7654,7 +7921,9 @@ slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -7685,6 +7954,7 @@ slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QSharedDataPointer \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetaobject.h \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qaudio.h \
@@ -7698,11 +7968,8 @@ slidehypcam.o: ../QtHypCam/slidehypcam.cpp ../QtHypCam/slidehypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QDir \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDesktopWidget \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QBoxLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QScreen \
@@ -7833,6 +8100,11 @@ rasphypcam.o: ../QtHypCam/rasphypcam.cpp ../QtHypCam/rasphypcam.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h
@@ -7963,6 +8235,11 @@ arduinomotor.o: ../QtHypCam/arduinomotor.cpp ../QtHypCam/arduinomotor.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8094,45 +8371,6 @@ formslidesettings.o: ../QtHypCam/formslidesettings.cpp ../QtHypCam/formslidesett
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formslidesettings.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
 		../QtHypCam/graphicsview.h \
@@ -8142,10 +8380,17 @@ formslidesettings.o: ../QtHypCam/formslidesettings.cpp ../QtHypCam/formslidesett
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8155,7 +8400,9 @@ formslidesettings.o: ../QtHypCam/formslidesettings.cpp ../QtHypCam/formslidesett
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -8275,45 +8522,6 @@ formsquareaperturesettings.o: ../QtHypCam/formsquareaperturesettings.cpp ../QtHy
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formsquareaperturesettings.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -8324,10 +8532,17 @@ formsquareaperturesettings.o: ../QtHypCam/formsquareaperturesettings.cpp ../QtHy
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8336,7 +8551,9 @@ formsquareaperturesettings.o: ../QtHypCam/formsquareaperturesettings.cpp ../QtHy
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -8456,49 +8673,6 @@ formndvisettings.o: ../QtHypCam/formndvisettings.cpp ../QtHypCam/formndvisetting
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formndvisettings.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QComboBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcombobox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -8509,10 +8683,17 @@ formndvisettings.o: ../QtHypCam/formndvisettings.cpp ../QtHypCam/formndvisetting
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8521,7 +8702,9 @@ formndvisettings.o: ../QtHypCam/formndvisettings.cpp ../QtHypCam/formndvisetting
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -8641,51 +8824,6 @@ formobtainfolder.o: ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formobtainfolde
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formobtainfolder.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -8693,11 +8831,20 @@ formobtainfolder.o: ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formobtainfolde
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8706,7 +8853,9 @@ formobtainfolder.o: ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formobtainfolde
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -8721,6 +8870,8 @@ formobtainfolder.o: ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formobtainfolde
 		../QtHypCam/mainwindow.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/QSerialPort \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialport.h \
 		../../../Qt/5.10.0/gcc_64/include/QtSerialPort/qserialportglobal.h \
@@ -8741,6 +8892,7 @@ formobtainfolder.o: ../QtHypCam/formobtainfolder.cpp ../QtHypCam/formobtainfolde
 		../../../Qt/5.10.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QSharedDataPointer \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetaobject.h \
 		../../../Qt/5.10.0/gcc_64/include/QtMultimedia/qaudio.h \
@@ -8868,6 +9020,11 @@ formbuildslidehypecubepreview.o: ../QtHypCam/formbuildslidehypecubepreview.cpp .
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -8891,51 +9048,6 @@ formbuildslidehypecubepreview.o: ../QtHypCam/formbuildslidehypecubepreview.cpp .
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
 		ui_formbuildslidehypecubepreview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		../QtHypCam/formhypcubebuildsettings.h
@@ -9062,6 +9174,11 @@ formtimertxt.o: ../QtHypCam/formtimertxt.cpp ../QtHypCam/formtimertxt.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -9085,39 +9202,6 @@ formtimertxt.o: ../QtHypCam/formtimertxt.cpp ../QtHypCam/formtimertxt.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
 		ui_formtimertxt.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QThread \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formtimertxt.o ../QtHypCam/formtimertxt.cpp
@@ -9249,6 +9333,11 @@ showancalchrres.o: ../QtHypCam/showancalchrres.cpp ../QtHypCam/showancalchrres.h
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -9270,10 +9359,6 @@ showancalchrres.o: ../QtHypCam/showancalchrres.cpp ../QtHypCam/showancalchrres.h
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFrame \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -9430,48 +9515,6 @@ formgenlinearregression.o: ../QtHypCam/formgenlinearregression.cpp ../QtHypCam/f
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formgenlinearregression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTableWidget \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtableview.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -9482,10 +9525,17 @@ formgenlinearregression.o: ../QtHypCam/formgenlinearregression.cpp ../QtHypCam/f
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -9494,7 +9544,9 @@ formgenlinearregression.o: ../QtHypCam/formgenlinearregression.cpp ../QtHypCam/f
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -9631,48 +9683,15 @@ formslidelinearregression.o: ../QtHypCam/formslidelinearregression.cpp ../QtHypC
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
 		ui_formslidelinearregression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QTableWidget \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtablewidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtableview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h \
@@ -9683,7 +9702,9 @@ formslidelinearregression.o: ../QtHypCam/formslidelinearregression.cpp ../QtHypC
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -9920,6 +9941,11 @@ formmergeslidecalibrations.o: ../QtHypCam/formmergeslidecalibrations.cpp ../QtHy
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -9943,45 +9969,6 @@ formmergeslidecalibrations.o: ../QtHypCam/formmergeslidecalibrations.cpp ../QtHy
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
 		ui_formmergeslidecalibrations.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QXmlStreamReader \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qxmlstream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formmergeslidecalibrations.o ../QtHypCam/formmergeslidecalibrations.cpp
@@ -10092,49 +10079,6 @@ formmerge3grayintoargb.o: ../QtHypCam/formmerge3grayintoargb.cpp ../QtHypCam/for
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_formmerge3grayintoargb.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../QtHypCam/__common.h \
 		../QtHypCam/lstStructs.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
@@ -10142,11 +10086,20 @@ formmerge3grayintoargb.o: ../QtHypCam/formmerge3grayintoargb.cpp ../QtHypCam/for
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -10155,7 +10108,9 @@ formmerge3grayintoargb.o: ../QtHypCam/formmerge3grayintoargb.cpp ../QtHypCam/for
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
 		../QtHypCam/customQMatrix3x3.h \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
 		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
@@ -10290,6 +10245,11 @@ formhypcubebuildsettings.o: ../QtHypCam/formhypcubebuildsettings.cpp ../QtHypCam
 		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		../QtHypCam/lstpaths.h \
 		../QtHypCam/lstcustoms.h \
 		../QtHypCam/lstraspividstruct.h \
@@ -10313,47 +10273,476 @@ formhypcubebuildsettings.o: ../QtHypCam/formhypcubebuildsettings.cpp ../QtHypCam
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
 		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
 		ui_formhypcubebuildsettings.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/QVariant \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDoubleSpinBox \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/QXmlStreamReader \
 		../../../Qt/5.10.0/gcc_64/include/QtCore/qxmlstream.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formhypcubebuildsettings.o ../QtHypCam/formhypcubebuildsettings.cpp
+
+formhypercubeanalysis.o: ../QtHypCam/formhypercubeanalysis.cpp ../QtHypCam/formhypercubeanalysis.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../QtHypCam/__common.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../QtHypCam/graphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		../QtHypCam/lstfilenames.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../QtHypCam/customQMatrix3x3.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMatrix2x2 \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QFileInfo \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
+		../QtHypCam/slideHypcube.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		ui_formhypercubeanalysis.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsLineItem \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QPen \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QFormLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qformlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QLayout \
+		../QtHypCam/formslideplotsettings.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formhypercubeanalysis.o ../QtHypCam/formhypercubeanalysis.cpp
+
+slideHypcube.o: ../QtHypCam/slideHypcube.cpp ../QtHypCam/__common.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../QtHypCam/graphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		../QtHypCam/lstfilenames.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../QtHypCam/customQMatrix3x3.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMatrix2x2 \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QFileInfo \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h \
+		../QtHypCam/slideHypcube.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDir \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdir.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o slideHypcube.o ../QtHypCam/slideHypcube.cpp
+
+formslideplotsettings.o: ../QtHypCam/formslideplotsettings.cpp ../QtHypCam/formslideplotsettings.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../QtHypCam/lstStructs.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QString \
+		../QtHypCam/graphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../QtHypCam/lstpaths.h \
+		../QtHypCam/lstcustoms.h \
+		../QtHypCam/lstraspividstruct.h \
+		ui_formslideplotsettings.h \
+		../QtHypCam/__common.h \
+		../QtHypCam/lstfilenames.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QDebug \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QTime \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QEventLoop \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QCoreApplication \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		../QtHypCam/customQMatrix3x3.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QVector3D \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/QMatrix2x2 \
+		../../../Qt/5.10.0/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/QFileInfo \
+		../../../Qt/5.10.0/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/QProgressBar \
+		../../../Qt/5.10.0/gcc_64/include/QtWidgets/qprogressbar.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formslideplotsettings.o ../QtHypCam/formslideplotsettings.cpp
 
 qrc_lstImgs.o: qrc_lstImgs.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_lstImgs.o qrc_lstImgs.cpp
@@ -10423,6 +10812,15 @@ moc_formmerge3grayintoargb.o: moc_formmerge3grayintoargb.cpp
 
 moc_formhypcubebuildsettings.o: moc_formhypcubebuildsettings.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formhypcubebuildsettings.o moc_formhypcubebuildsettings.cpp
+
+moc_formhypercubeanalysis.o: moc_formhypercubeanalysis.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formhypercubeanalysis.o moc_formhypercubeanalysis.cpp
+
+moc_slideHypcube.o: moc_slideHypcube.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_slideHypcube.o moc_slideHypcube.cpp
+
+moc_formslideplotsettings.o: moc_formslideplotsettings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formslideplotsettings.o moc_formslideplotsettings.cpp
 
 ####### Install
 

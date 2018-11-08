@@ -131,6 +131,10 @@ public:
     QAction *actionCalc_Sensitivities;
     QAction *actionSlide_Min_Wavelength;
     QAction *actionHypCube_From_H264;
+    QAction *actionCube_Analysis;
+    QAction *actionApply_Affine_Transformation;
+    QAction *actionApply_Optical_Correction;
+    QAction *actionExtract_ROI;
     QWidget *centralWidget;
     QTabWidget *pbExpPixs;
     QWidget *tab;
@@ -575,6 +579,17 @@ public:
         actionSlide_Min_Wavelength->setObjectName(QStringLiteral("actionSlide_Min_Wavelength"));
         actionHypCube_From_H264 = new QAction(MainWindow);
         actionHypCube_From_H264->setObjectName(QStringLiteral("actionHypCube_From_H264"));
+        actionCube_Analysis = new QAction(MainWindow);
+        actionCube_Analysis->setObjectName(QStringLiteral("actionCube_Analysis"));
+        QIcon icon44;
+        icon44.addFile(QStringLiteral(":/new/icons/imagenInte/plotSignature.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCube_Analysis->setIcon(icon44);
+        actionApply_Affine_Transformation = new QAction(MainWindow);
+        actionApply_Affine_Transformation->setObjectName(QStringLiteral("actionApply_Affine_Transformation"));
+        actionApply_Optical_Correction = new QAction(MainWindow);
+        actionApply_Optical_Correction->setObjectName(QStringLiteral("actionApply_Optical_Correction"));
+        actionExtract_ROI = new QAction(MainWindow);
+        actionExtract_ROI->setObjectName(QStringLiteral("actionExtract_ROI"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pbExpPixs = new QTabWidget(centralWidget);
@@ -616,17 +631,17 @@ public:
 
         pbAddIp = new QPushButton(layoutWidget1);
         pbAddIp->setObjectName(QStringLiteral("pbAddIp"));
-        QIcon icon44;
-        icon44.addFile(QStringLiteral(":/new/icons/imagenInte/list-add.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbAddIp->setIcon(icon44);
+        QIcon icon45;
+        icon45.addFile(QStringLiteral(":/new/icons/imagenInte/list-add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbAddIp->setIcon(icon45);
 
         gridLayout->addWidget(pbAddIp, 0, 2, 1, 1);
 
         pbSearchAll = new QPushButton(layoutWidget1);
         pbSearchAll->setObjectName(QStringLiteral("pbSearchAll"));
-        QIcon icon45;
-        icon45.addFile(QStringLiteral(":/new/icons/imagenInte/zoom-in.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSearchAll->setIcon(icon45);
+        QIcon icon46;
+        icon46.addFile(QStringLiteral(":/new/icons/imagenInte/zoom-in.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSearchAll->setIcon(icon46);
 
         gridLayout->addWidget(pbSearchAll, 0, 3, 1, 1);
 
@@ -649,9 +664,9 @@ public:
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
         pbSendComm = new QPushButton(layoutWidget2);
         pbSendComm->setObjectName(QStringLiteral("pbSendComm"));
-        QIcon icon46;
-        icon46.addFile(QStringLiteral(":/new/icons/imagenInte/gtk-media-play-ltr.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSendComm->setIcon(icon46);
+        QIcon icon47;
+        icon47.addFile(QStringLiteral(":/new/icons/imagenInte/gtk-media-play-ltr.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSendComm->setIcon(icon47);
         pbSendComm->setIconSize(QSize(15, 15));
 
         gridLayout_2->addWidget(pbSendComm, 0, 2, 1, 1);
@@ -674,9 +689,9 @@ public:
         pbShutdown = new QPushButton(layoutWidget2);
         pbShutdown->setObjectName(QStringLiteral("pbShutdown"));
         pbShutdown->setEnabled(true);
-        QIcon icon47;
-        icon47.addFile(QStringLiteral(":/new/icons/imagenInte/salir.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbShutdown->setIcon(icon47);
+        QIcon icon48;
+        icon48.addFile(QStringLiteral(":/new/icons/imagenInte/salir.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbShutdown->setIcon(icon48);
         pbShutdown->setIconSize(QSize(15, 15));
 
         gridLayout_2->addWidget(pbShutdown, 0, 3, 1, 1);
@@ -687,21 +702,21 @@ public:
         pbConnect = new QPushButton(tab);
         pbConnect->setObjectName(QStringLiteral("pbConnect"));
         pbConnect->setGeometry(QRect(340, 100, 31, 31));
-        QIcon icon48;
-        icon48.addFile(QStringLiteral(":/new/icons/imagenInte/right.gif"), QSize(), QIcon::Normal, QIcon::Off);
-        pbConnect->setIcon(icon48);
+        QIcon icon49;
+        icon49.addFile(QStringLiteral(":/new/icons/imagenInte/right.gif"), QSize(), QIcon::Normal, QIcon::Off);
+        pbConnect->setIcon(icon49);
         pbLANConnect = new QPushButton(tab);
         pbLANConnect->setObjectName(QStringLiteral("pbLANConnect"));
         pbLANConnect->setGeometry(QRect(340, 140, 31, 31));
-        QIcon icon49;
-        icon49.addFile(QStringLiteral(":/new/icons/imagenInte/WiFi.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbLANConnect->setIcon(icon49);
+        QIcon icon50;
+        icon50.addFile(QStringLiteral(":/new/icons/imagenInte/WiFi.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbLANConnect->setIcon(icon50);
         pbLANTestConn = new QPushButton(tab);
         pbLANTestConn->setObjectName(QStringLiteral("pbLANTestConn"));
         pbLANTestConn->setGeometry(QRect(340, 180, 31, 31));
-        QIcon icon50;
-        icon50.addFile(QStringLiteral(":/new/icons/imagenInte/question.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbLANTestConn->setIcon(icon50);
+        QIcon icon51;
+        icon51.addFile(QStringLiteral(":/new/icons/imagenInte/question.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbLANTestConn->setIcon(icon51);
         pbExpPixs->addTab(tab, QString());
         tableLstCams->raise();
         frame->raise();
@@ -883,16 +898,16 @@ public:
         pbSaveRaspParam->setObjectName(QStringLiteral("pbSaveRaspParam"));
         pbSaveRaspParam->setEnabled(true);
         pbSaveRaspParam->setGeometry(QRect(233, 4, 31, 31));
-        QIcon icon51;
-        icon51.addFile(QStringLiteral(":/new/icons/imagenInte/add-484.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSaveRaspParam->setIcon(icon51);
+        QIcon icon52;
+        icon52.addFile(QStringLiteral(":/new/icons/imagenInte/add-484.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSaveRaspParam->setIcon(icon52);
         pbCopyShutter = new QPushButton(frame_6);
         pbCopyShutter->setObjectName(QStringLiteral("pbCopyShutter"));
         pbCopyShutter->setEnabled(true);
         pbCopyShutter->setGeometry(QRect(316, 4, 31, 31));
-        QIcon icon52;
-        icon52.addFile(QStringLiteral(":/new/icons/imagenInte/anterior.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbCopyShutter->setIcon(icon52);
+        QIcon icon53;
+        icon53.addFile(QStringLiteral(":/new/icons/imagenInte/anterior.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbCopyShutter->setIcon(icon53);
         pbObtPar = new QPushButton(frame_6);
         pbObtPar->setObjectName(QStringLiteral("pbObtPar"));
         pbObtPar->setEnabled(true);
@@ -1068,9 +1083,9 @@ public:
         pbSpecCut = new QPushButton(layoutWidget5);
         pbSpecCut->setObjectName(QStringLiteral("pbSpecCut"));
         pbSpecCut->setEnabled(false);
-        QIcon icon53;
-        icon53.addFile(QStringLiteral(":/new/icons/imagenInte/tijeras.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pbSpecCut->setIcon(icon53);
+        QIcon icon54;
+        icon54.addFile(QStringLiteral(":/new/icons/imagenInte/tijeras.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pbSpecCut->setIcon(icon54);
 
         gridLayout_5->addWidget(pbSpecCut, 0, 4, 1, 1);
 
@@ -1216,11 +1231,11 @@ public:
         menuMake->addAction(actionLinear_Regression);
         menuMake->addSeparator();
         menuMake->addAction(actionSlide_Linear_Regression);
+        menuMake->addAction(actionMerge_Calibration);
         menuMake->addAction(actionCalc_Sensitivities);
         menuMake->addSeparator();
         menuMake->addAction(menuPlot->menuAction());
         menuMake->addSeparator();
-        menuMake->addAction(actionMerge_Calibration);
         menuMake->addAction(actionPlot_over_Real);
         menuMake->addAction(actionPlot_Line_at_Wavelength);
         menuMake->addSeparator();
@@ -1231,10 +1246,13 @@ public:
         menuPlot->addAction(actionOrigin);
         menuCalib_Edition->addAction(actionApply_Rotation);
         menuCalib_Edition->addAction(actionApply_Transformation);
+        menuCalib_Edition->addAction(actionApply_Affine_Transformation);
+        menuCalib_Edition->addAction(actionApply_Optical_Correction);
         menuLocal->addAction(menuSlide_2->menuAction());
         menuSlide_2->addAction(menuStep_by_Step->menuAction());
         menuSlide_2->addAction(actionHypCube_From_H264);
         menuStep_by_Step->addAction(actionExtract_frames_2);
+        menuStep_by_Step->addAction(actionExtract_ROI);
         menuStep_by_Step->addAction(actionBuild_HypCube);
         menuStep_by_Step->addAction(actionBuild_HypCube_2);
         toolBarDraw->addAction(actionSelection);
@@ -1268,6 +1286,7 @@ public:
         mainToolbar->addAction(actionsquareSettings);
         mainToolbar->addAction(actionvideoToFrames);
         mainToolbar->addAction(actionframesToCube);
+        mainToolbar->addAction(actionCube_Analysis);
 
         retranslateUi(MainWindow);
 
@@ -1498,6 +1517,10 @@ public:
         actionCalc_Sensitivities->setText(QApplication::translate("MainWindow", "Calc Sensitivities", nullptr));
         actionSlide_Min_Wavelength->setText(QApplication::translate("MainWindow", "Slide Min Wavelength", nullptr));
         actionHypCube_From_H264->setText(QApplication::translate("MainWindow", "HypCube From H264", nullptr));
+        actionCube_Analysis->setText(QApplication::translate("MainWindow", "Cube Analysis", nullptr));
+        actionApply_Affine_Transformation->setText(QApplication::translate("MainWindow", "Apply Affine Transformation", nullptr));
+        actionApply_Optical_Correction->setText(QApplication::translate("MainWindow", "Apply Optical Correction", nullptr));
+        actionExtract_ROI->setText(QApplication::translate("MainWindow", "Extract ROI", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableLstCams->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Camera", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableLstCams->horizontalHeaderItem(1);
